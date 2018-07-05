@@ -112,18 +112,24 @@
 
 
 
-  <meta name="description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="苹果官方文档中有下图： Runloop内部的逻辑基本如下： 其内部代码整理如下：可以看到，实际上Runloop是一个这样的函数，其内部是一个do-while循环。当你调用CFRunloopRun()时，线程就会一直停留在这个循环里，直到手动停止或者超时，该函数才会返回。 Runloop的底层实现：Runloop的核心是基于mach port的，其进入休眠时调用的函数是mach_msg()。解释这个">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo个性化配置">
-<meta property="og:url" content="http://htmlios.github.io/2016/06/24/Hexo个性化配置/index.html">
+<meta property="og:title" content="iOS-Runloop浅谈">
+<meta property="og:url" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/index.html">
 <meta property="og:site_name" content="沐凡的博客">
-<meta property="og:description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
+<meta property="og:description" content="苹果官方文档中有下图： Runloop内部的逻辑基本如下： 其内部代码整理如下：可以看到，实际上Runloop是一个这样的函数，其内部是一个do-while循环。当你调用CFRunloopRun()时，线程就会一直停留在这个循环里，直到手动停止或者超时，该函数才会返回。 Runloop的底层实现：Runloop的核心是基于mach port的，其进入休眠时调用的函数是mach_msg()。解释这个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-24T11:51:02.221Z">
+<meta property="og:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop.jpg">
+<meta property="og:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop2.jpg">
+<meta property="og:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop3.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop4.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop5.png">
+<meta property="og:updated_time" content="2018-07-05T01:25:06.161Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo个性化配置">
-<meta name="twitter:description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
+<meta name="twitter:title" content="iOS-Runloop浅谈">
+<meta name="twitter:description" content="苹果官方文档中有下图： Runloop内部的逻辑基本如下： 其内部代码整理如下：可以看到，实际上Runloop是一个这样的函数，其内部是一个do-while循环。当你调用CFRunloopRun()时，线程就会一直停留在这个循环里，直到手动停止或者超时，该函数才会返回。 Runloop的底层实现：Runloop的核心是基于mach port的，其进入休眠时调用的函数是mach_msg()。解释这个">
+<meta name="twitter:image" content="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/runloop.jpg">
 
 
 
@@ -132,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://htmlios.github.io/2016/06/24/Hexo个性化配置/"/>
+  <link rel="canonical" href="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/"/>
 
 
 
@@ -142,7 +148,7 @@
   };
 </script>
 
-  <title>Hexo个性化配置 | 沐凡的博客</title>
+  <title>iOS-Runloop浅谈 | 沐凡的博客</title>
   
 
 
@@ -299,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/06/24/Hexo个性化配置/">
+    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/07/02/iOS-Runloop浅谈/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mufan">
@@ -316,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo个性化配置
+          <h2 class="post-title" itemprop="name headline">iOS-Runloop浅谈
               
             
           </h2>
@@ -339,7 +345,7 @@
                 
               
 
-              <time title="创建时间：2016-06-24 19:37:00" itemprop="dateCreated datePublished" datetime="2016-06-24T19:37:00+08:00">2016-06-24</time>
+              <time title="创建时间：2016-07-02 09:52:00" itemprop="dateCreated datePublished" datetime="2016-07-02T09:52:00+08:00">2016-07-02</time>
             
 
             
@@ -355,7 +361,7 @@
               </span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
 
                 
                 
@@ -389,14 +395,40 @@
       
 
       
-        <h2 id="Hexo-next-categories和tags页面"><a href="#Hexo-next-categories和tags页面" class="headerlink" title="Hexo-next categories和tags页面"></a>Hexo-next categories和tags页面</h2><p>hexo默认是没有categories和tags的，创建步骤：</p>
-<p>在hexo目录分别执行如下命令</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">"categories"</span></span><br></pre></td></tr></table></figure>
-<p>编辑<code>/tags/index.md</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"tags"</span></span><br></pre></td></tr></table></figure>
-<p>编辑<code>/categories/index.md</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"categories"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"categories"</span></span><br></pre></td></tr></table></figure>
-<p>取消next的<code>_config.yml</code>的<code>tags</code>、<code>categories</code>的注释。</p>
+        <h3 id="苹果官方文档中有下图："><a href="#苹果官方文档中有下图：" class="headerlink" title="苹果官方文档中有下图："></a><a href="https://link.jianshu.com/?t=https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Multithreading/RunLoopManagement/RunLoopManagement.html" target="_blank" rel="noopener">苹果官方文档</a>中有下图：</h3><p><img src="/2016/07/02/iOS-Runloop浅谈/runloop.jpg" alt="Structure of a run loop and its sources"></p>
+<h3 id="Runloop内部的逻辑基本如下："><a href="#Runloop内部的逻辑基本如下：" class="headerlink" title="Runloop内部的逻辑基本如下："></a>Runloop内部的逻辑基本如下：</h3><p><img src="/2016/07/02/iOS-Runloop浅谈/runloop2.jpg" alt="1829339-d378878ffdf4c6ae.jpg"></p>
+<h3 id="其内部代码整理如下："><a href="#其内部代码整理如下：" class="headerlink" title="其内部代码整理如下："></a>其内部代码整理如下：</h3><p>可以看到，实际上Runloop是一个这样的函数，其内部是一个do-while循环。当你调用<code>CFRunloopRun()</code>时，线程就会一直停留在这个循环里，直到手动停止或者超时，该函数才会返回。</p>
+<h3 id="Runloop的底层实现："><a href="#Runloop的底层实现：" class="headerlink" title="Runloop的底层实现："></a>Runloop的底层实现：</h3><p>Runloop的核心是基于mach port的，其进入休眠时调用的函数是mach_msg()。解释这个逻辑，下面稍微介绍一下OSX/iOS的系统架构。</p>
+<p><img src="/2016/07/02/iOS-Runloop浅谈/runloop3.png" alt="1829339-be19d014752b22c0.png"></p>
+<p>苹果官方将整个系统大致分为上述4个层次：</p>
+<p>应用层包括用户能够接触到的图形应用，例如Spotlight、Aqua、SpringBoard等；</p>
+<p>应用框架层即开发人员所接触到的Cocoa等框架；</p>
+<p>核心架构层包括各种核心架构、OpenGL等内容；</p>
+<p>Darwin即操作系统核心，包括系统内核、驱动、Shell等内容，是开源的，其所有源码都可以在opensource.apple.com里找到；</p>
+<p>深入看Darwin这个核心架构：</p>
+<p><img src="/2016/07/02/iOS-Runloop浅谈/runloop4.png" alt="1829339-a9bd8e6efe4245a6.png"></p>
+<p>其中，在硬件层上面的三个组成部分：Mach、BSD、IOKit（还包括上面一些标注内容），共同组成了XNU内核。</p>
+<p>XNU内核的内环被称作为Mach，其作为一个内核，仅提供诸如处理器调度、IPC(进程间调度)等非常少量的基础服务。</p>
+<p>BSD层可以看做是围绕Mach层的一个外环，其提供诸如进程管理、文件系统和网络等功能。</p>
+<p>IOKit层为设置驱动提供了一个面向对象(C++)的架构。</p>
+<p>Mach</p>
+<p>本身提供的API非常有限，而且苹果也不鼓励使用Mach的API，但是这些API非常基础，如果没有这些API的话，其他任何工作都无法实施。在Mach中，所有的东西都是通过自己的对象实现的，进程、线程和虚拟内存都被称为“对象”。和其他架构不同，Mach的对象间不能直接通信，只能通过消息传递的方式实现对象间的通信。“消息”是Mach中最基础的概念，消息在两个端口（port）之间传递，这就是Mach的IPC(进程间通信)的核心。</p>
+<p>Mach的消息定义是在头文件的，如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">mach_msg_header_t header;</span><br><span class="line">mach_msg_body_t body;</span><br><span class="line">&#125; mach_msg_base_t;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">mach_msg_bits_t msgh_bits;</span><br><span class="line">mach_msg_size_t msgh_size;</span><br><span class="line">mach_port_t msgh_remote_port;</span><br><span class="line">mach_port_t msgh_local_port;</span><br><span class="line">mach_port_name_t msgh_voucher_port;</span><br><span class="line">mach_msg_id_t msgh_id;</span><br><span class="line">&#125; mach_msg_header_t;</span><br></pre></td></tr></table></figure>
+<p>一条Mach的消息实际上是一个二进制数据包（BLOB），其头部定了当前端口local_port和目标端口remote_port，发送和接收消息是通过同一个API进行的，其option标记了消息传递的方向。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mach_msg_return_t</span> mach_msg(</span><br><span class="line"><span class="keyword">mach_msg_header_t</span> *msg,</span><br><span class="line"><span class="keyword">mach_msg_option_t</span> option,</span><br><span class="line"><span class="keyword">mach_msg_size_t</span> send_size,</span><br><span class="line"><span class="keyword">mach_msg_size_t</span> rcv_size,</span><br><span class="line"><span class="keyword">mach_port_name_t</span> rcv_name,</span><br><span class="line"><span class="keyword">mach_msg_timeout_t</span> timeout,</span><br><span class="line"><span class="keyword">mach_port_name_t</span> notify);</span><br></pre></td></tr></table></figure>
+<p>为了实现消息的发送和接收，mach_msg()函数实际上调用了一个Mach陷阱(trap)，即函数mach_msg_trap()，陷阱这个概念在Mach中等同于系统调用。当你在用户态调用mach_msg_map()时会出发陷阱机制，切换到内核态：内核态中内核实现的mach_msg()函数会完成实际工作，如下图：</p>
+<p><img src="/2016/07/02/iOS-Runloop浅谈/runloop5.png" alt="1829339-7d244424ee5a8ef8.png"></p>
+<p>这些概念参考维基百科：System_call、Trap_(computing)</p>
+<p>RunLoop的核心就是一个mach_msg()（见上面代码第七部），RunLoop调用这个函数去接收实际消息，如果没有别人发送port，消息过来，内核会将线程闲置等待状态。例如你在模拟器里跑一个iOS App，然后在App静止时点击暂停，你会看到主线程调用栈是停留在<code>mach_msg_trap()</code>这个地方。</p>
+<h3 id="苹果用Runloop实现的功能"><a href="#苹果用Runloop实现的功能" class="headerlink" title="苹果用Runloop实现的功能"></a>苹果用Runloop实现的功能</h3><p>首先我们可以看一下App启动后Runloop的状态：</p>
+<p>可以看到，系统默认注册了5个Mode:</p>
+<p>1.KCFRunLoopDefaultMode:App的默认Mode，通常主线程是在这个Mode下运行的。</p>
+<p>2.UITrackingRunLoopMode:界面跟踪Mode，用于ScrollView跟踪触摸滑动，保证界面滑动时不受其他Mode影响。</p>
+<p>3.UIInitializationRunLoopMode:在刚启动App时进入的第一个Mode，启动完成后就不再使用。</p>
+<p>4.GSEventReceiveRunLoopMode:接受系统事件的内部Mode，通常用不到。</p>
+<p>5.kCFRunLoopCommonModes:这是一个占位的Mode，没有实际作用。</p>
+<p>可以看到很多苹果内部的Mode，但那些Mode在开发中很难遇到。</p>
 
       
     </div>
@@ -417,7 +449,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -430,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/24/Hexo-plugin/" rel="next" title="Hexo-plugin">
-                <i class="fa fa-chevron-left"></i> Hexo-plugin
+              <a href="/2016/06/25/Hexo-Github搭建博客/" rel="next" title="Hexo+Github搭建博客">
+                <i class="fa fa-chevron-left"></i> Hexo+Github搭建博客
               </a>
             
           </div>
@@ -440,8 +472,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/25/Hexo-Github搭建博客/" rel="prev" title="Hexo+Github搭建博客">
-                Hexo+Github搭建博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/26/iOS面试题及解答/" rel="prev" title="iOS面试题及解答">
+                iOS面试题及解答 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -610,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-next-categories和tags页面"><span class="nav-number">1.</span> <span class="nav-text">Hexo-next categories和tags页面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#苹果官方文档中有下图："><span class="nav-number">1.</span> <span class="nav-text">苹果官方文档中有下图：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runloop内部的逻辑基本如下："><span class="nav-number">2.</span> <span class="nav-text">Runloop内部的逻辑基本如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其内部代码整理如下："><span class="nav-number">3.</span> <span class="nav-text">其内部代码整理如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Runloop的底层实现："><span class="nav-number">4.</span> <span class="nav-text">Runloop的底层实现：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#苹果用Runloop实现的功能"><span class="nav-number">5.</span> <span class="nav-text">苹果用Runloop实现的功能</span></a></li></ol></div>
             
 
           </div>
