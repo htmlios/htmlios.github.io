@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://htmlios.github.io/"/>
-  <updated>2018-06-27T10:16:30.132Z</updated>
+  <updated>2018-07-06T06:54:13.646Z</updated>
   <id>http://htmlios.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>iOS发展</title>
+    <link href="http://htmlios.github.io/2016/08/06/iOS%E5%8F%91%E5%B1%95/"/>
+    <id>http://htmlios.github.io/2016/08/06/iOS发展/</id>
+    <published>2016-08-06T06:32:00.000Z</published>
+    <updated>2018-07-06T06:54:13.646Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="个人技术栈"><a href="#个人技术栈" class="headerlink" title="个人技术栈"></a>个人技术栈</h3><p><img src="/2016/08/06/iOS发展/1.png" alt="iOS技术栈"></p><h3 id="个人发展规划"><a href="#个人发展规划" class="headerlink" title="个人发展规划"></a>个人发展规划</h3><p><img src="/2016/08/06/iOS发展/2.png" alt="iOS技术栈"></p><p>更新中。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;个人技术栈&quot;&gt;&lt;a href=&quot;#个人技术栈&quot; class=&quot;headerlink&quot; title=&quot;个人技术栈&quot;&gt;&lt;/a&gt;个人技术栈&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/2016/08/06/iOS发展/1.png&quot; alt=&quot;iOS技术栈&quot;&gt;&lt;/p&gt;
+&lt;h3 i
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://htmlios.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+      <category term="iOS" scheme="http://htmlios.github.io/tags/iOS/"/>
+    
+  </entry>
   
   <entry>
     <title>iOS面试题及解答(二)</title>
@@ -124,9 +150,9 @@
     <link href="http://htmlios.github.io/2016/06/24/Hexo%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
     <id>http://htmlios.github.io/2016/06/24/Hexo个性化配置/</id>
     <published>2016-06-24T11:37:00.000Z</published>
-    <updated>2018-06-24T11:51:02.221Z</updated>
+    <updated>2018-07-05T04:01:47.646Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Hexo-next-categories和tags页面"><a href="#Hexo-next-categories和tags页面" class="headerlink" title="Hexo-next categories和tags页面"></a>Hexo-next categories和tags页面</h2><p>hexo默认是没有categories和tags的，创建步骤：</p><p>在hexo目录分别执行如下命令</p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">"categories"</span></span><br></pre></td></tr></table></figure><p>编辑<code>/tags/index.md</code></p><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"tags"</span></span><br></pre></td></tr></table></figure><p>编辑<code>/categories/index.md</code></p><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"categories"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"categories"</span></span><br></pre></td></tr></table></figure><p>取消next的<code>_config.yml</code>的<code>tags</code>、<code>categories</code>的注释。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Hexo-next-categories和tags页面"><a href="#Hexo-next-categories和tags页面" class="headerlink" title="Hexo-next categories和tags页面"></a>Hexo-next categories和tags页面</h2><p>hexo默认是没有categories和tags的，创建步骤：</p><p>在hexo目录分别执行如下命令</p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">"categories"</span></span><br></pre></td></tr></table></figure><p>编辑<code>/tags/index.md</code></p><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"tags"</span></span><br></pre></td></tr></table></figure><p>编辑<code>/categories/index.md</code></p><figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"categories"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"categories"</span></span><br></pre></td></tr></table></figure><p>取消next的<code>_config.yml</code>的<code>tags</code>、<code>categories</code>的注释。</p><h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">hexo指令</a></p>]]></content>
     
     <summary type="html">
     
