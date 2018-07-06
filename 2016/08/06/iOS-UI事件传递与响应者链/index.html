@@ -112,21 +112,23 @@
 
 
 
-  <meta name="description" content="个人技术栈 个人发展规划 更新中。。。">
+  <meta name="description" content="概述响应者对象：继承自UIResponder的对象称之为响应者对象。UIApplication、Window、UIViewController和所有继承UIView的UIKit类都直接或间接的继承自UIResponder。 UIResponder一般响应以下几种事件：触摸事件(touch handing)、点按事件(press handing)、加速事件和远程控制事件： /** 触摸事件(touc">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS发展">
-<meta property="og:url" content="http://htmlios.github.io/2016/08/06/iOS发展/index.html">
+<meta property="og:title" content="iOS-UI事件传递与响应者链">
+<meta property="og:url" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/index.html">
 <meta property="og:site_name" content="沐凡的博客">
-<meta property="og:description" content="个人技术栈 个人发展规划 更新中。。。">
+<meta property="og:description" content="概述响应者对象：继承自UIResponder的对象称之为响应者对象。UIApplication、Window、UIViewController和所有继承UIView的UIKit类都直接或间接的继承自UIResponder。 UIResponder一般响应以下几种事件：触摸事件(touch handing)、点按事件(press handing)、加速事件和远程控制事件： /** 触摸事件(touc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS发展/1.png">
-<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS发展/2.png">
-<meta property="og:updated_time" content="2018-07-06T06:54:13.646Z">
+<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/1.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/2.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/3.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/4.png">
+<meta property="og:updated_time" content="2018-07-06T12:40:32.456Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS发展">
-<meta name="twitter:description" content="个人技术栈 个人发展规划 更新中。。。">
-<meta name="twitter:image" content="http://htmlios.github.io/2016/08/06/iOS发展/1.png">
+<meta name="twitter:title" content="iOS-UI事件传递与响应者链">
+<meta name="twitter:description" content="概述响应者对象：继承自UIResponder的对象称之为响应者对象。UIApplication、Window、UIViewController和所有继承UIView的UIKit类都直接或间接的继承自UIResponder。 UIResponder一般响应以下几种事件：触摸事件(touch handing)、点按事件(press handing)、加速事件和远程控制事件： /** 触摸事件(touc">
+<meta name="twitter:image" content="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/1.png">
 
 
 
@@ -135,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://htmlios.github.io/2016/08/06/iOS发展/"/>
+  <link rel="canonical" href="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/"/>
 
 
 
@@ -145,7 +147,7 @@
   };
 </script>
 
-  <title>iOS发展 | 沐凡的博客</title>
+  <title>iOS-UI事件传递与响应者链 | 沐凡的博客</title>
   
 
 
@@ -302,7 +304,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/08/06/iOS发展/">
+    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/08/06/iOS-UI事件传递与响应者链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mufan">
@@ -319,7 +321,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">iOS发展
+          <h2 class="post-title" itemprop="name headline">iOS-UI事件传递与响应者链
               
             
           </h2>
@@ -342,7 +344,7 @@
                 
               
 
-              <time title="创建时间：2016-08-06 14:32:00" itemprop="dateCreated datePublished" datetime="2016-08-06T14:32:00+08:00">2016-08-06</time>
+              <time title="创建时间：2016-08-06 17:12:00" itemprop="dateCreated datePublished" datetime="2016-08-06T17:12:00+08:00">2016-08-06</time>
             
 
             
@@ -392,9 +394,52 @@
       
 
       
-        <h3 id="个人技术栈"><a href="#个人技术栈" class="headerlink" title="个人技术栈"></a>个人技术栈</h3><p><img src="/2016/08/06/iOS发展/1.png" alt="iOS技术栈"></p>
-<h3 id="个人发展规划"><a href="#个人发展规划" class="headerlink" title="个人发展规划"></a>个人发展规划</h3><p><img src="/2016/08/06/iOS发展/2.png" alt="iOS技术栈"></p>
-<p>更新中。。。</p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>响应者对象：继承自UIResponder的对象称之为响应者对象。UIApplication、Window、UIViewController和所有继承UIView的UIKit类都直接或间接的继承自UIResponder。</p>
+<p>UIResponder一般响应以下几种事件：触摸事件(touch handing)、点按事件(press handing)、加速事件和远程控制事件：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/** 触摸事件(touch handling) */</span><br><span class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(nullable UIEvent *)event;</span><br><span class="line">- (void)touchesMoved:(NSSet *)touches withEvent:(nullable UIEvent *)event;</span><br><span class="line">- (void)touchesEnded:(NSSet *)touches withEvent:(nullable UIEvent *)event;</span><br><span class="line">- (void)touchesCancelled:(NSSet *)touches withEvent:(nullable UIEvent *)event;</span><br><span class="line">- (void)touchesEstimatedPropertiesUpdated:(NSSet *)touches NS_AVAILABLE_IOS(9_1);</span><br><span class="line">/** 点按事件(press handling) NS_AVAILABLE_IOS(9_0) */</span><br><span class="line">- (void)pressesBegan:(NSSet *)presses withEvent:(nullable UIPressesEvent *)event NS_AVAILABLE_IOS(9_0);</span><br><span class="line">- (void)pressesChanged:(NSSet *)presses withEvent:(nullable UIPressesEvent *)event NS_AVAILABLE_IOS(9_0);</span><br><span class="line">- (void)pressesEnded:(NSSet *)presses withEvent:(nullable UIPressesEvent *)event NS_AVAILABLE_IOS(9_0);</span><br><span class="line">- (void)pressesCancelled:(NSSet *)presses withEvent:(nullable UIPressesEvent *)event NS_AVAILABLE_IOS(9_0);</span><br><span class="line">/** 加速事件 */</span><br><span class="line">- (void)motionBegan:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event NS_AVAILABLE_IOS(3_0);</span><br><span class="line">- (void)motionEnded:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event NS_AVAILABLE_IOS(3_0);</span><br><span class="line">- (void)motionCancelled:(UIEventSubtype)motion withEvent:(nullable UIEvent *)event NS_AVAILABLE_IOS(3_0);</span><br><span class="line">/** 远程控制事件 */</span><br><span class="line">- (void)remoteControlReceivedWithEvent:(nullable UIEvent *)event NS_AVAILABLE_IOS(4_0);</span><br></pre></td></tr></table></figure>
+<p>响应者链：由多个响应者组合起来的链条，就叫做响应者链。它表示了每个响应者之间的联系，并且可以使得一个事件可选择多个对象处理。</p>
+<p><img src="/2016/08/06/iOS-UI事件传递与响应者链/1.png" alt="img"></p>
+<p>假设触摸了initial view:</p>
+<ol>
+<li>第一响应者就是initial view即initial view首先响应touchesBegan:withEvent:方法，接着传递给橘黄色的view;</li>
+<li>橘黄色的view开始响应touchesBegan:withEvent:方法，接着传递给蓝绿色view；</li>
+<li>蓝绿色view响应touchesBegan:withEvent:方法，接着传递给控制器的view；</li>
+<li>控制器view响应touchesBegan:withEvent:方法，控制器传递给了窗口；</li>
+<li>窗口再传递给application；</li>
+</ol>
+<p>如果上述响应者都不处理该事件，那么事件被丢弃。</p>
+<h3 id="事件的产生和传递"><a href="#事件的产生和传递" class="headerlink" title="事件的产生和传递"></a>事件的产生和传递</h3><p>当一个触摸事件产生的时候，我们的程序是如何找到第一响应者的？</p>
+<p><img src="/2016/08/06/iOS-UI事件传递与响应者链/2.png" alt="img"></p>
+<p>当你点击了屏幕会产生一个触摸事件，消息循环(runloop)会接收到触摸事件放到消息队列里，UIApplication会从消息队列里取事件分发下去，首先传给UIWindow，UIWindow会使用hitTest:withEvent:方法找到此次触摸事件初始点所在的视图，找到这个视图之后他就会调用视图的touchesBegan:withEvent:方法来处理事件。</p>
+<h4 id="hitTest-withEvent-查找过程"><a href="#hitTest-withEvent-查找过程" class="headerlink" title="hitTest:withEvent:查找过程"></a>hitTest:withEvent:查找过程</h4><p><img src="/2016/08/06/iOS-UI事件传递与响应者链/3.png" alt="img"></p>
+<p>图片中view的层次：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[ViewA addSubview:ViewB]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewA addSubview:ViewC]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewB addSubview:ViewD]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewB addSubview:ViewE]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>点击ViewE：</p>
+<ol>
+<li>A是UIWindow的根视图，首先对A进行hitTest:withEvent:。</li>
+<li>判断A的userInteractionEnable，如果为NO，A的hitTest:withEvent返回nil。</li>
+<li>pointInside:withEvent:方法判断用户点击是否在A的范围内，显然返回YES。</li>
+<li>遍历A的视图B和C，由于从后向前遍历<ul>
+<li>因此先查看C，调用C的hitTest:withEvent方法: pointInside:withEvent:方法判断用户的点击是否在C的范围内，不在返回NO，C对应的hitTest:withEvent:方法return nil。</li>
+<li>再查看B，调用B的hitTest:withEvent方法：pointInside:withEvent:判断用户的点击是否在B视图的范围内，在则返回YES。</li>
+</ul>
+</li>
+</ol>
+<p>遍历B的子视图D和E，从后向前遍历</p>
+<p>先查看E，调用E的hitTest:withEvent:方法：pointInside:withEvent:方法 判断用户点击是否在E范围内，在返回YES，E没有子视图，因此E对应的hitTest:withEvent方法返回E，再往前回溯，就是B的hitTest:withEvent方法放回E，因此A的hitTest:withEvent方法返回E。</p>
+<p>至此，点击事件的第一响应者就找到了。</p>
+<blockquote>
+<p>如果hitTest:withEvent:找到的第一响应者view没有处理该事件，那么事件沿着响应者链向上传递-&gt;父视图-&gt;视图控制器，如果传递到最顶级视图还没处理事件，那么就传递给window处理，若window对象也不处理-&gt;交给UIApplication处理，如果UIApplication对象还不处理，就丢弃该事件。</p>
+</blockquote>
+<p><img src="/2016/08/06/iOS-UI事件传递与响应者链/4.png" alt="img"></p>
+<p>注意：控件不能响应的情况</p>
+<ol>
+<li>userInteractionEnable = NO;</li>
+<li>hidden = YES;</li>
+<li>透明度 alpha &lt;= 0.01f;</li>
+<li>子视图超出父视图区域</li>
+</ol>
+<p>子视图超出父视图，不响应的原因：因为父视图的pointInside:withEvent:方法返回了NO，就不会遍历子视图了。可以重写pointInside:withEvent:方法解决此问题。</p>
 
       
     </div>
@@ -428,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/27/iOS面试题及解答-二/" rel="next" title="iOS面试题及解答(二)">
-                <i class="fa fa-chevron-left"></i> iOS面试题及解答(二)
+              <a href="/2016/08/06/iOS发展/" rel="next" title="iOS发展">
+                <i class="fa fa-chevron-left"></i> iOS发展
               </a>
             
           </div>
@@ -437,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/06/iOS-UI事件传递与响应者链/" rel="prev" title="iOS-UI事件传递与响应者链">
-                iOS-UI事件传递与响应者链 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -608,7 +649,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人技术栈"><span class="nav-number">1.</span> <span class="nav-text">个人技术栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人发展规划"><span class="nav-number">2.</span> <span class="nav-text">个人发展规划</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件的产生和传递"><span class="nav-number">2.</span> <span class="nav-text">事件的产生和传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hitTest-withEvent-查找过程"><span class="nav-number">2.1.</span> <span class="nav-text">hitTest:withEvent:查找过程</span></a></li></ol></li></ol></div>
             
 
           </div>
