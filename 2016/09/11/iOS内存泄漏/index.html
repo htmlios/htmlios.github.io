@@ -112,18 +112,18 @@
 
 
 
-  <meta name="description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="背景平常我们会使用 Instruments 的 Leaks / Allocations 或其他一些开源库进行内存泄漏的排查，但是这些工具都存在各种问题和不便，我们来逐个看一下这些工具的使用和存在的问题。 Leaks苹果的文档中，一个app的内存分为三类：  Leaked memory: Memory unreferenced by your application that cannot be u">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo个性化配置">
-<meta property="og:url" content="http://htmlios.github.io/2016/06/24/Hexo个性化配置/index.html">
+<meta property="og:title" content="iOS内存泄漏">
+<meta property="og:url" content="http://htmlios.github.io/2016/09/11/iOS内存泄漏/index.html">
 <meta property="og:site_name" content="沐凡的博客">
-<meta property="og:description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
+<meta property="og:description" content="背景平常我们会使用 Instruments 的 Leaks / Allocations 或其他一些开源库进行内存泄漏的排查，但是这些工具都存在各种问题和不便，我们来逐个看一下这些工具的使用和存在的问题。 Leaks苹果的文档中，一个app的内存分为三类：  Leaked memory: Memory unreferenced by your application that cannot be u">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T04:01:47.646Z">
+<meta property="og:updated_time" content="2018-07-11T10:16:06.179Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo个性化配置">
-<meta name="twitter:description" content="Hexo-next categories和tags页面hexo默认是没有categories和tags的，创建步骤： 在hexo目录分别执行如下命令 hexo new page &quot;tags&quot;hexo new page &quot;categories&quot; 编辑/tags/index.md type: &quot;tags&quot;layout: &quot;tags&quot; 编辑/categories/index.md type: &quot;cate">
+<meta name="twitter:title" content="iOS内存泄漏">
+<meta name="twitter:description" content="背景平常我们会使用 Instruments 的 Leaks / Allocations 或其他一些开源库进行内存泄漏的排查，但是这些工具都存在各种问题和不便，我们来逐个看一下这些工具的使用和存在的问题。 Leaks苹果的文档中，一个app的内存分为三类：  Leaked memory: Memory unreferenced by your application that cannot be u">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://htmlios.github.io/2016/06/24/Hexo个性化配置/"/>
+  <link rel="canonical" href="http://htmlios.github.io/2016/09/11/iOS内存泄漏/"/>
 
 
 
@@ -142,7 +142,7 @@
   };
 </script>
 
-  <title>Hexo个性化配置 | 沐凡的博客</title>
+  <title>iOS内存泄漏 | 沐凡的博客</title>
   
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/06/24/Hexo个性化配置/">
+    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/09/11/iOS内存泄漏/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mufan">
@@ -316,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo个性化配置
+          <h2 class="post-title" itemprop="name headline">iOS内存泄漏
               
             
           </h2>
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2016-06-24 19:37:00" itemprop="dateCreated datePublished" datetime="2016-06-24T19:37:00+08:00">2016-06-24</time>
+              <time title="创建时间：2016-09-11 09:53:00" itemprop="dateCreated datePublished" datetime="2016-09-11T09:53:00+08:00">2016-09-11</time>
             
 
             
@@ -355,7 +355,7 @@
               </span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
 
                 
                 
@@ -389,15 +389,60 @@
       
 
       
-        <h2 id="Hexo-next-categories和tags页面"><a href="#Hexo-next-categories和tags页面" class="headerlink" title="Hexo-next categories和tags页面"></a>Hexo-next categories和tags页面</h2><p>hexo默认是没有categories和tags的，创建步骤：</p>
-<p>在hexo目录分别执行如下命令</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">hexo new<span class="built_in"> page </span><span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line">hexo new<span class="built_in"> page </span><span class="string">"categories"</span></span><br></pre></td></tr></table></figure>
-<p>编辑<code>/tags/index.md</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"tags"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"tags"</span></span><br></pre></td></tr></table></figure>
-<p>编辑<code>/categories/index.md</code></p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">type:</span> <span class="string">"categories"</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">layout:</span> <span class="string">"categories"</span></span><br></pre></td></tr></table></figure>
-<p>取消next的<code>_config.yml</code>的<code>tags</code>、<code>categories</code>的注释。</p>
-<h2 id="Hexo常用命令"><a href="#Hexo常用命令" class="headerlink" title="Hexo常用命令"></a>Hexo常用命令</h2><p><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">hexo指令</a></p>
+        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>平常我们会使用 Instruments 的 Leaks / Allocations 或其他一些开源库进行内存泄漏的排查，但是这些工具都存在各种问题和不便，我们来逐个看一下这些工具的使用和存在的问题。</p>
+<h3 id="Leaks"><a href="#Leaks" class="headerlink" title="Leaks"></a>Leaks</h3><p>苹果的文档中，一个app的内存分为三类：</p>
+<ol>
+<li><strong>Leaked memory</strong>: Memory unreferenced by your application that cannot be used again or freed (also detectable by using the Leaks instrument).</li>
+<li><strong>Abandoned memory</strong>: Memory still referenced by your application that has no useful purpose.</li>
+<li><strong>Cached memory</strong>: Memory still referenced by your application that might be used again for better performance.</li>
+</ol>
+<p>其中Leaked memory 和 Abandoned memory都是应该释放而没释放的内存，都是内存泄漏，而Leaks工具只负责检测Leaked memory，而不管Abandoned memory。在MRC时代Leaked memory很常见，因为很容易忘了调用release，但在ARC时代更常见的内存泄漏是循环引用导致的Abandoned memory，Leaks工具查不出这类内存泄漏，应用有限。</p>
+<h3 id="Allocations"><a href="#Allocations" class="headerlink" title="Allocations"></a>Allocations</h3><p>用这种方法来发现内存泄漏很不方便：</p>
+<ol>
+<li>首先，需要打开Allocations；</li>
+<li>其次，得一个个场景去重复的操作；</li>
+<li>无法及时得知泄漏，得专门做一遍上述操作，十分繁琐。</li>
+</ol>
+<h3 id="MLeaksFinder"><a href="#MLeaksFinder" class="headerlink" title="MLeaksFinder"></a>MLeaksFinder</h3><p>MLeaksFinder 提供了内存泄漏检测更好的解决方案。只需引入MLeaksFinder，就可以自动在App运行过程(debug模式下)检测到内存泄漏的对象并立即提醒，无需打开额外的工具，也无需为了检测内存泄漏而去一个个场景去重复操作，无需修改任何业务逻辑代码，只需在debug下开启，完全不影响你的release包。MLeaksFinder 目前能自动检测 UIViewController 和 UIView 对象内存泄漏，也可以扩展以检测其他类型的对象。</p>
+<p>当发生内存泄漏的时候，控制台会有如下提示，View-ViewController stack 从上往下看，该 stack 告诉你，MyTableViewController 的 UITableView 的 subview UITableViewWrapperView 的 subview MyTableViewCell 没被释放。而且，这里我们可以肯定的是 MyTableViewController，UITableView，UITableViewWrapperView 这三个已经成功释放。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">*** Terminating app due to uncaught exception &apos;NSInternalInconsistencyException&apos;, reason: &apos;Possibly Memory Leak.</span><br><span class="line">In case that MyTableViewCell should not be dealloced, override -willDealloc in MyTableViewCell by returning NO.</span><br><span class="line">View-ViewController stack: (</span><br><span class="line">    MyTableViewController,</span><br><span class="line">    UITableView,</span><br><span class="line">    UITableViewWrapperView,</span><br><span class="line">    MyTableViewCell</span><br><span class="line">)&apos;</span><br></pre></td></tr></table></figure>
+<p>以上可以看出，MLeaksFinder的优点如下：</p>
+<ol>
+<li>使用简单，不侵入业务逻辑代码，不用打开 Instruments。</li>
+<li>不需要额外的操作，你只需要关注你的业务逻辑，在App运行时自动帮你检测。</li>
+<li>内存泄漏发生时，更改完代码一运行即能发现（这点很重要，你马上就能意识到哪里写错了）。</li>
+<li>精准，能精准的告诉你哪个对象没有被释放。</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>MLeakFinder一开始从 UIViewController 入手。我们知道，当一个 UIViewController 被 pop 或 diss 后，该 UIViewController 包括它的 view，view 的 subview 等等都很快被释放（除非你把他设计成单例，或者强引用它，但一般很少这样做）。于是，我们只需要在 UIViewController 被 pop 或 diss 一小段时间后，看看该 Controller，它的 view 和 view 的 subview 等等是否还存在。</p>
+<p>具体方法是，为基类 NSObject 添加一个方法 - willDealloc ，该方法的作用是，先用一个弱指针指向 self，并在一小段时间（3s）后，通过这个弱指针调用 - assertNotDealloc，而 -assertNotDealloc 主要作用是直接中断言。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (BOOL)willDealloc &#123;</span><br><span class="line">    __weak id weakSelf = self;</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        [weakSelf assertNotDealloc];</span><br><span class="line">    &#125;);</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line">- (void)assertNotDealloc &#123;</span><br><span class="line">     NSAssert(NO, @“”);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，当我们认为某个对象应该要被释放了，在释放前调用这个方法，如果3秒后它被释放成功，weakSelf 就指向nil，不会调用到 -assertNotDealloc方法，也就不会中断言，如果它没有被释放（泄漏了），-assertNotDealloc 就会被调用中断言。这样，当一个 ViewController 被 pop 或 diss 时（我们认为它应该要被释放了），遍历该 ViewController 上的所有view，依次调用 -willDealloc，若3秒后没被释放，就会中断言。</p>
+<p>这里有几个问题要解决：</p>
+<ol>
+<li><p>不侵入代码：</p>
+<p>这里使用 AOP 技术，hook 掉 UIViewController 和 UINavigationController 的 pop 跟 dismiss 方法，关于如何hook，请参考 <a href="https://nshipster.com/method-swizzling/" target="_blank" rel="noopener">Method Swizzling</a>。</p>
+</li>
+<li><p>遍历相关对象：</p>
+<p>在实际项目中，我们发现有时候一个 ViewController 被释放了，但它的 view 没被释放，或者一个 UIView 被释放了，但它的 subview 没有被释放。这种情况很常见，因此有必要遍历基于 UIViewController 的整棵 View-ViewController 树。我们通过 UIViewController 的 presentedViewController 和 view 属性，UIView 的 subviews 属性做递归遍历。对于某些 ViewController，如 UINavigationController 和 UISplitViewController 等，我们还需要遍历它的 viewControllers 属性。</p>
+</li>
+<li><p>构建堆栈信息：</p>
+<p>需要构建 View-ViewController stack 信息来告诉开发者哪个对象没被释放。在递归遍历 View-ViewController树时，子节点的 stack 信息由父节点的 stack 信息加上子节点的信息即可。</p>
+</li>
+<li><p>例外机制：</p>
+<p>对于有些 ViewController，在被 push 或 pop 后不会被释放（例如单例），因此我们需要提供机制让开发者指定哪个对象不会被释放，这里可以通过重载 -willDealloc 方法，直接返回 NO 即可。</p>
+</li>
+<li><p>特殊情况：</p>
+<p>对于某些特殊情况，释放时间不一样（比如系统收拾返回时，在滑到一半时hold住，虽然已经被pop，但是这时不会释放，ViewController 要等到完全 disappear 后才释放），需要做特殊处理，具体的特殊处理视具体情况而定。</p>
+</li>
+<li><p>系统View：</p>
+<p>某些系统的私有View，不会被释放（可能是系统bug或者是系统出于某些原因故意这样做的，不深究），因此需要设立白名单。</p>
+</li>
+<li><p>手动扩展：</p>
+<p>MLeaksFinder 目前只有检测 ViewController 跟 View 对象。为此，MLeaksFinder 提供了一个手动扩展机制，你可以从 UIViewController 跟 UIView 出发，去检测其他类型的对象的内存泄漏。如下所示，我们可以检测 UIViewController 底下的 ViewModel：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (BOOL)willDealloc &#123;</span><br><span class="line">    if (![super willDealloc]) &#123;</span><br><span class="line">        return NO;</span><br><span class="line">    &#125;</span><br><span class="line">    MLCheck(self.viewModel);</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里原理跟上面是一样的，宏 MLCheck() 做的事就是为传进来的对象建立 View-ViewController stack 信息，并对传进来的对象调用 -willDealloc 方法。</p>
+</li>
+</ol>
 
       
     </div>
@@ -418,7 +463,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -431,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/24/Hexo-plugin/" rel="next" title="Hexo-plugin">
-                <i class="fa fa-chevron-left"></i> Hexo-plugin
+              <a href="/2016/08/09/iOS-RunTime原理解析/" rel="next" title="iOS-RunTime原理解析">
+                <i class="fa fa-chevron-left"></i> iOS-RunTime原理解析
               </a>
             
           </div>
@@ -440,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/25/Hexo-Github搭建博客/" rel="prev" title="Hexo+Github搭建博客">
-                Hexo+Github搭建博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -611,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-next-categories和tags页面"><span class="nav-number">1.</span> <span class="nav-text">Hexo-next categories和tags页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo常用命令"><span class="nav-number">2.</span> <span class="nav-text">Hexo常用命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Leaks"><span class="nav-number">2.</span> <span class="nav-text">Leaks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Allocations"><span class="nav-number">3.</span> <span class="nav-text">Allocations</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MLeaksFinder"><span class="nav-number">4.</span> <span class="nav-text">MLeaksFinder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">5.</span> <span class="nav-text">原理</span></a></li></ol></div>
             
 
           </div>
