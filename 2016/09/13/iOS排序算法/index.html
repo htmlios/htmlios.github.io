@@ -112,18 +112,18 @@
 
 
 
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="hexo">
+  <meta name="description" content="冒泡排序算法思想：遍历数组[0~array.count]，途中比较数组相邻两个元素的大小，小的排左边，大的排右边，第一次排序完成最后一个是最大的。再遍历[0~array.count - 1]，依次类推。 算法实现： - (void)bubbleSort:(NSMutableArray *)array &amp;#123;    for (NSInteger i = 0; i &amp;lt; array.coun">
+<meta name="keywords" content="iOS,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://htmlios.github.io/2016/06/21/Hexo/index.html">
+<meta property="og:title" content="iOS排序算法">
+<meta property="og:url" content="http://htmlios.github.io/2016/09/13/iOS排序算法/index.html">
 <meta property="og:site_name" content="沐凡的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="冒泡排序算法思想：遍历数组[0~array.count]，途中比较数组相邻两个元素的大小，小的排左边，大的排右边，第一次排序完成最后一个是最大的。再遍历[0~array.count - 1]，依次类推。 算法实现： - (void)bubbleSort:(NSMutableArray *)array &amp;#123;    for (NSInteger i = 0; i &amp;lt; array.coun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-23T18:11:17.743Z">
+<meta property="og:updated_time" content="2018-07-15T01:07:32.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="iOS排序算法">
+<meta name="twitter:description" content="冒泡排序算法思想：遍历数组[0~array.count]，途中比较数组相邻两个元素的大小，小的排左边，大的排右边，第一次排序完成最后一个是最大的。再遍历[0~array.count - 1]，依次类推。 算法实现： - (void)bubbleSort:(NSMutableArray *)array &amp;#123;    for (NSInteger i = 0; i &amp;lt; array.coun">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://htmlios.github.io/2016/06/21/Hexo/"/>
+  <link rel="canonical" href="http://htmlios.github.io/2016/09/13/iOS排序算法/"/>
 
 
 
@@ -142,7 +142,7 @@
   };
 </script>
 
-  <title>Hexo | 沐凡的博客</title>
+  <title>iOS排序算法 | 沐凡的博客</title>
   
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/06/21/Hexo/">
+    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/09/13/iOS排序算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="mufan">
@@ -316,7 +316,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Hexo
+          <h2 class="post-title" itemprop="name headline">iOS排序算法
               
             
           </h2>
@@ -339,7 +339,7 @@
                 
               
 
-              <time title="创建时间：2016-06-21 02:07:00" itemprop="dateCreated datePublished" datetime="2016-06-21T02:07:00+08:00">2016-06-21</time>
+              <time title="创建时间：2016-09-13 16:31:00" itemprop="dateCreated datePublished" datetime="2016-09-13T16:31:00+08:00">2016-09-13</time>
             
 
             
@@ -355,7 +355,7 @@
               </span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
 
                 
                 
@@ -389,15 +389,19 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>算法思想：遍历数组[0~array.count]，途中比较数组相邻两个元素的大小，小的排左边，大的排右边，第一次排序完成最后一个是最大的。再遍历[0~array.count - 1]，依次类推。</p>
+<p>算法实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)bubbleSort:(NSMutableArray *)array &#123;</span><br><span class="line">    for (NSInteger i = 0; i &lt; array.count; i++) &#123;</span><br><span class="line">        for (NSInteger j = 1; j &lt; array.count - i; j++) &#123;</span><br><span class="line">            if ([array[j - 1] integerValue] &gt; [array[j] integerValue]) &#123;</span><br><span class="line">                NSInteger temp = [array[j - 1] integerValue];</span><br><span class="line">                array[j - 1] = array[j];</span><br><span class="line">                array[j] = @(temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>算法思想：遍历数组[0~array.count]，查找最小的一个元素与第一个元素交换。然后从剩下的[1~array.count]查找最小的与第二个元素交换。直至排序结束。</p>
+<p>算法实现：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">- (void)selectSort:(NSMutableArray *)array &#123;</span><br><span class="line">    for (NSInteger i = 0; i &lt; array.count; i++) &#123;</span><br><span class="line">        NSInteger minIndex = i; // 初始当次排序最小的是第一个</span><br><span class="line">        for (NSInteger j = i + 1; j &lt; array.count; j++) &#123; // 依次查找最小的索引</span><br><span class="line">            if ([array[minIndex] integerValue] &gt; [array[j] integerValue])</span><br><span class="line">                minIndex = j;</span><br><span class="line">        &#125;</span><br><span class="line">        NSInteger temp = [array[i] integerValue];</span><br><span class="line">        array[i] = array[minIndex];</span><br><span class="line">        array[minIndex] = @(temp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>算法思想：从数组第二个元素开始遍历，将它依次倒序和前面的元素比较，若该元素比前面的元素小，将它保存到临时变量中，依次将前面的元素后移，然后将它插入到合适的位置。每次排序完成后，索引左边的元素一定是有序的，但是还可以移动。</p>
+<p>算法实现：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)insertSort:(<span class="built_in">NSMutableArray</span> *)array &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">1</span>; i &lt; array.count; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> j = i; j &gt; <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> ([array[j - <span class="number">1</span>] integerValue] &gt; [array[j] integerValue]) &#123;</span><br><span class="line">             	<span class="built_in">NSInteger</span> temp = [array[j] integerValue];</span><br><span class="line">                array[j] = array[j - <span class="number">1</span>];</span><br><span class="line">                array[j - <span class="number">1</span>] = @(temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>算法思想：挖出数组第一个元素作为基准元素，倒序从数组末尾依次与第一个元素比较，若有元素小于第一个元素，则将小的元素挖出填到该位置；然后从第二个元素开始正序与比较，若有元素大于</p>
+<p>算法实现：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)quickSort:(<span class="built_in">NSMutableArray</span> *)array left:(<span class="built_in">NSInteger</span>)left right:(<span class="built_in">NSInteger</span>)right &#123;</span><br><span class="line">    <span class="keyword">if</span> (array.count &lt;= left || array.count &lt;= right || left &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSInteger</span> tempLeft = left;</span><br><span class="line">    <span class="built_in">NSInteger</span> tempRight = right;</span><br><span class="line">    <span class="built_in">NSInteger</span> temp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (tempRight &gt;= tempLeft) &#123;</span><br><span class="line">        temp = [array[tempLeft] integerValue];</span><br><span class="line">        <span class="keyword">while</span> (tempLeft != tempRight) &#123;</span><br><span class="line">            <span class="keyword">while</span> (tempRight &gt; tempLeft &amp;&amp; [array[tempRight] integerValue] &gt;= temp)</span><br><span class="line">                tempRight--;</span><br><span class="line">            array[tempLeft] = array[tempRight];</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">while</span> (tempRight &gt; tempLeft &amp;&amp; temp &gt;= [array[tempLeft] integerValue])</span><br><span class="line">                tempLeft++;</span><br><span class="line">            array[tempRight] = array[tempLeft];</span><br><span class="line">        &#125;</span><br><span class="line">        array[tempLeft] = @(temp);</span><br><span class="line">        [<span class="keyword">self</span> quickSort:array left:left right:tempLeft - <span class="number">1</span>];</span><br><span class="line">        [<span class="keyword">self</span> quickSort:array left:tempRight + <span class="number">1</span> right:right];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>持续更新中</p>
 
       
     </div>
@@ -418,7 +422,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -431,15 +437,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/11/iOS内存泄漏/" rel="next" title="iOS内存泄漏">
+                <i class="fa fa-chevron-left"></i> iOS内存泄漏
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/24/Hexo-plugin/" rel="prev" title="Hexo-plugin">
-                Hexo-plugin <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -609,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">3.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">4.</span> <span class="nav-text">快速排序</span></a></li></ol></div>
             
 
           </div>
