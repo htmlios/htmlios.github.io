@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+<meta name="keywords" content="iOS,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出iOS多线程">
+<meta property="og:url" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/index.html">
+<meta property="og:site_name" content="沐凡的博客">
+<meta property="og:description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/1.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/2.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/3.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/4.png">
+<meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/5.png">
+<meta property="og:updated_time" content="2018-07-25T10:09:00.287Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入浅出iOS多线程">
+<meta name="twitter:description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+<meta name="twitter:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/1.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="沐凡的博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="canonical" href="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>深入浅出iOS多线程 | 沐凡的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">沐凡的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="mufan">
+      <meta itemprop="description" content="这个世界上是没有捷径可言的<br>如果说有捷径，那也就是勤奋。">
+      <meta itemprop="image" content="/images/zhl_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="沐凡的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">深入浅出iOS多线程
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-12-23 16:01:00" itemprop="dateCreated datePublished" datetime="2016-12-23T16:01:00+08:00">2016-12-23</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工作/" itemprop="url" rel="index"><span itemprop="name">工作</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="多线程在iOS中的使用：GCD"><a href="#多线程在iOS中的使用：GCD" class="headerlink" title="多线程在iOS中的使用：GCD"></a>多线程在iOS中的使用：GCD</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。</p>
+<h4 id="GCD优势"><a href="#GCD优势" class="headerlink" title="GCD优势"></a>GCD优势</h4><p>GCD会自动利用更多的CPU模块（比如双核、四核）。</p>
+<p>GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。</p>
+<p>程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。</p>
+<h4 id="为什么要使用GCD"><a href="#为什么要使用GCD" class="headerlink" title="为什么要使用GCD"></a>为什么要使用GCD</h4><p>为了提高软件性能，应该异步执行耗时任务（图片加载），以防影响主线程任务的执行（UI相关）。</p>
+<blockquote>
+<p>例如：</p>
+<p>从网络加载一张图片，如果将其放到主线程，那么在下载完成的时间里，软件是无法响应用户的其他操作。特别，如果当前是可以滚动的页面，就会造成无法滚动这种体验非常差。</p>
+</blockquote>
+<p>所以，应该将网络加载放在异步线程里执行，执行成功后，再回到主线程显示加载后的图片。</p>
+<h4 id="GCD的使用步骤"><a href="#GCD的使用步骤" class="headerlink" title="GCD的使用步骤"></a>GCD的使用步骤</h4><ol>
+<li>由开发者指定要执行的任务；</li>
+<li>将任务添加到队列中，GCD会自动将队列中的任务取出，放到对应的线程中执行；</li>
+</ol>
+<blockquote>
+<p>注意：</p>
+<p>任务取出遵循队列的FIFO原则：先进先出，后进后出。</p>
+</blockquote>
+<h4 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h4><p>队列是用来存放任务的，由GCD将这些任务从队列中取出放到对应的线程中执行。</p>
+<h4 id="GCD的队列可以分为2大类型："><a href="#GCD的队列可以分为2大类型：" class="headerlink" title="GCD的队列可以分为2大类型："></a>GCD的队列可以分为2大类型：</h4><h5 id="1-并发队列（Concurrent-Dispatch-Queue）"><a href="#1-并发队列（Concurrent-Dispatch-Queue）" class="headerlink" title="1.并发队列（Concurrent Dispatch Queue）"></a>1.并发队列（Concurrent Dispatch Queue）</h5><p>可以让多个任务并发（同时）执行（自动开启多个线程执行任务），并发功能只有在异步（dispatch_async）函数下才有效。</p>
+<h5 id="2-串行队列（Serial-Dispatch-Queue）"><a href="#2-串行队列（Serial-Dispatch-Queue）" class="headerlink" title="2.串行队列（Serial Dispatch Queue）"></a>2.串行队列（Serial Dispatch Queue）</h5><p>让任务一个接一个的执行（一个任务执行完毕后，再执行下一个任务）。</p>
+<h5 id="队列和线程有什么区别？"><a href="#队列和线程有什么区别？" class="headerlink" title="队列和线程有什么区别？"></a>队列和线程有什么区别？</h5><p>简单来说，队列就是用来存放任务的“暂存区”，而线程是执行任务的路径，GCD将这些存在于队列的任务取出放到相应线程上去执行，而队列的性质决定了在其中的任务在哪种线程上执行。</p>
+<p>下图直观的展示了任务、队列、线程的关系：</p>
+<p><img src="/2016/12/23/深入浅出iOS多线程/1.png" alt="img"></p>
+<blockquote>
+<p>在这里，我们可以看到，放入队列的任务会一个一个地执行。而放入并行队列的任务，会在多个线程并发地执行。</p>
+</blockquote>
+<h4 id="队列的创建："><a href="#队列的创建：" class="headerlink" title="队列的创建："></a>队列的创建：</h4><h5 id="串行队列的创建："><a href="#串行队列的创建：" class="headerlink" title="串行队列的创建："></a>串行队列的创建：</h5><p>GCD中获取串行有2种途径：</p>
+<ol>
+<li><p>使用<code>dispatch_queue_create</code>函数创建串行队列</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建串行队列(队列类型传递NULL或者DISPATCH_QUEUE_SERIAL)</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"serial_queue"</span>, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用主队列（跟主线程关联的队列）</p>
+<p>主队列是GCD自带的一种特殊的串行队列；放在主队列中的任务，都会放到主线程中执行。</p>
+<p>使用<code>dispatch_get_main_queue()</code>获得系统提供的主队列</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="并发队列的创建："><a href="#并发队列的创建：" class="headerlink" title="并发队列的创建："></a>并发队列的创建：</h5><ol>
+<li><p>使用<code>dispatch_queue_create</code>函数创建并发队列</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"concurrent_queue"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>dispatch_get_global_queue</code>获得全局并发队列</p>
+<p>GCD默认提供了全局并发队列，供整个应用使用，可以无需手动创建。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="GCD的几种重要的应用"><a href="#GCD的几种重要的应用" class="headerlink" title="GCD的几种重要的应用"></a>GCD的几种重要的应用</h4><h5 id="子线程与主线程的通信"><a href="#子线程与主线程的通信" class="headerlink" title="子线程与主线程的通信"></a>子线程与主线程的通信</h5><p>需求点：我们有时需要在子线程处理一个耗时比较长的任务，而且此任务完成后，要在主线程执行另一任务。</p>
+<p>例子：从网络加载图片（在子线程），加载完成后更新UI（在主线程）。</p>
+<p>为了实现这个需求，我们需要首先拿到全局并发队列（或者自己开一个子线程）来执行耗时操作，然后在其完成的block中拿到全局串行队列来执行UI刷新的任务。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">   <span class="comment">// 加载图片</span></span><br><span class="line">    <span class="built_in">NSData</span> *dataFromURL = [<span class="built_in">NSData</span> dataWithContentsOfURL:imageURL];</span><br><span class="line">    <span class="built_in">UIImage</span> *imageFromData = [<span class="built_in">UIImage</span> imageWithData:dataFromURL];</span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="comment">// 显示加载好的image</span></span><br><span class="line">        <span class="built_in">UIImageView</span> *imageView = [[<span class="built_in">UIImageView</span> alloc] initWithImage:imageFromData];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以笔者的拙见，除了复杂的算法，网络请求外，大多数<code>dataWithContentsOf...</code>函数也会比较耗时，所以以后遇到与NSData交互的操作时，尽量将其放在子线程执行。</p>
+</blockquote>
+<h5 id="dispatch-once"><a href="#dispatch-once" class="headerlink" title="dispatch_once"></a>dispatch_once</h5><p>需求点：用于程序启动到终止，只执行一次的代码。此代码执行后，相当于自身全部被加上了注释，不会再执行了。</p>
+<p>为了实现这个需求，我们需要使用<code>dispatch_once</code>让代码运行一次后就被“雪藏”。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用dispatch_once函数能保证某段代码在程序运行过程中只被执行1次</span></span><br><span class="line"><span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line"><span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">    <span class="comment">// 只执行一次的代码，这里默认是线程安全的：不会有其他线程访问到这里</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h5 id="dispatch-group"><a href="#dispatch-group" class="headerlink" title="dispatch_group"></a>dispatch_group</h5><p>需求点：执行多个耗时的异步任务，但是只能等到这些任务执行完成后，才能在主线程中执行某个任务。</p>
+<p>为了实现这个需求，我们需要将这些异步操作放在<code>dispatch_group_async</code>函数中执行，最后再调用<code>dispatch_group_notify</code>来执行最后的任务。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">dispatch_group_t group = dispatch_group_create();</span><br><span class="line">dispatch_group_asyn(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="comment">// 执行1个耗时的异步操作</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">10000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务1"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_group_asyn(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="comment">// 执行1个耗时的异步操作</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">20000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务2"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_group_asyn(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="comment">// 执行1个耗时的异步操作</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">20000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务3"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_group_asyn(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="comment">// 执行1个耗时的异步操作</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">40000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务4"</span>); </span><br><span class="line">&#125;);</span><br><span class="line">dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    <span class="comment">// 等前面的异步操作都执行完成后，回到主线程...</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"都完成了"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/2016/12/23/深入浅出iOS多线程/2.png" alt="运行结果"></p>
+<blockquote>
+<p>从三次运行结果来看：</p>
+<ol>
+<li>异步执行的任务1-5的最终完成时间是与其自身完成任务所需的时间并无关联。因为任务5是最耗时的，它在第一次运行结果里并不是最后才完成的。任务1是最不耗时的，但是它在第二次运行结果里并不是最先完成的。</li>
+<li>异步执行的任务1-5无论完成顺序如何，只有他们都完成了才会调用主线程的打印“都完成了”。</li>
+</ol>
+</blockquote>
+<h5 id="dispatch-barrier"><a href="#dispatch-barrier" class="headerlink" title="dispatch_barrier"></a>dispatch_barrier</h5><p>需求点：虽然我们有时候需要执行几个不同的异步任务，但是我们想将其分成两组，当第一组异步任务执行完成后才执行第二组异步任务。这里的组可以包含一个任务，也可以包含多个任务。</p>
+<p>为了实现这个需求，我们需要使用<code>dispatch_barrier_async(dispatch_queue_t queue, dispatch_block_t block);</code>在两组任务之间形成“栅栏”，使其“下方”的异步任务在其“上方”的异步任务都完成之前是无法执行的。</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"123123123"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">10000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务1"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">20000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务2"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">200000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务3"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"---分割线---"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">400000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务4"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">500000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务5"</span>); </span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">NSInteger</span> index = <span class="number">0</span>; index &lt; <span class="number">600000</span>; index ++) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"完成了任务6"</span>); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="/2016/12/23/深入浅出iOS多线程/3.png" alt="栅栏"></p>
+<blockquote>
+<p>从三次运行结果来看：</p>
+<ol>
+<li>无论任务1-3内部执行顺序如何，只有当三个都完成了才会执行任务4-6。</li>
+<li>1-3内部的执行顺序和4-6内部的执行顺序都是不可控的，同上一个知识点类似。</li>
+</ol>
+</blockquote>
+<h3 id="多线程常见的一些问题："><a href="#多线程常见的一些问题：" class="headerlink" title="多线程常见的一些问题："></a>多线程常见的一些问题：</h3><h4 id="GCD死锁问题："><a href="#GCD死锁问题：" class="headerlink" title="GCD死锁问题："></a>GCD死锁问题：</h4><p>概念：</p>
+<p>同步：会阻塞当前线程，等block(任务)执行完成后，当前线程才会继续往下执行。</p>
+<p>异步：不会阻塞当前线程。</p>
+<p>案例一（死锁）：同步串行</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务1"</span>);</span><br><span class="line"><span class="built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务2"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务3"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出：</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line">任务<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>死锁原因：</p>
+<ol>
+<li>NSLog(@”任务1”); // 正常</li>
+<li>dispatch_sync(dispatch_get_main_queue(),); // 同步操作阻塞主线程，需要等<code>任务2</code>执行完才算完成</li>
+<li>NSLog(@”任务3”); // 上一步同步操作已经卡死，不会执行到这里</li>
+<li>block(^{ NSLog(@”任务2”) }); // 等待<code>任务3</code>执行完才能执行</li>
+</ol>
+<blockquote>
+<p>2等4执行完，但是4在等2和3执行完，相互等待造成死锁；</p>
+<p>同步向串行队列添加任务的时候，需要队列任务都执行完才能添加，所以<code>任务2</code>添加在<code>任务3</code>后面;</p>
+</blockquote>
+<p><img src="/2016/12/23/深入浅出iOS多线程/4.png" alt="案例一"></p>
+<p>案例二（不会死锁）：同步并行</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务1"</span>);</span><br><span class="line"><span class="built_in">dispatch_sync</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务2"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务3"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">任务1</span><br><span class="line">任务2</span><br><span class="line">任务3</span><br></pre></td></tr></table></figure>
+<p>分析过程：</p>
+<ol>
+<li><p>NSLog(@”任务1”);</p>
+</li>
+<li><p>dispatch_sync(dispatch_get_global_queue(0, 0)) // 同步操作阻塞主线程，向global并行队列添加<code>任务2</code></p>
+<blockquote>
+<p>NSLog(@”任务2”); // global执行完<code>任务2</code>，同步操作就执行完毕</p>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务3”);</p>
+</li>
+</ol>
+<p><img src="/2016/12/23/深入浅出iOS多线程/5.png" alt="案例二"></p>
+<p>案例三(会死锁)：同步异步都有</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"testQueue"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务1"</span>);</span><br><span class="line"><span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务2"</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"任务3"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务4"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务5"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">任务1</span><br><span class="line">任务5</span><br><span class="line">任务2</span><br><span class="line">// “任务2”和“任务5”顺序不一定</span><br></pre></td></tr></table></figure>
+<p>死锁原因：</p>
+<ol>
+<li><p>NSLog(@”任务1”);</p>
+</li>
+<li><p>dispatch_async(queue);  // 异步操作不阻塞主线程，主线程继续执行<code>任务5</code></p>
+<blockquote>
+<ol>
+<li>NSLog(@”任务2”); // 正常</li>
+<li>dispatch_sync(queue) // 同步操作阻塞子线程，等待<code>任务3</code>执行完毕才算执行完毕</li>
+<li>NSLog(@”任务4”); // 等待同步操作(上一条)执行完毕</li>
+<li>block(NSLog(@”任务3”)); // 等待<code>任务4</code>执行完毕</li>
+</ol>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务5”); // 主线程正常执行</p>
+</li>
+</ol>
+<p>案例四(不会死锁)：异步遇到同步回到主线程</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务1"</span>);</span><br><span class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务2"</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">       <span class="built_in">NSLog</span>(<span class="string">@"任务3"</span>); </span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务4"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务5"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">任务1</span><br><span class="line">任务5</span><br><span class="line">任务2</span><br><span class="line">任务3</span><br><span class="line">任务4</span><br><span class="line">// `任务5` 和 `任务2`顺序不一定</span><br></pre></td></tr></table></figure>
+<p>分析过程：</p>
+<ol>
+<li><p>NSLog(@”任务1”);</p>
+</li>
+<li><p>dispatch_async(dispatch_get_global_queue); // 异步操作不阻塞主线程，主线程继续执行<code>任务5</code></p>
+<blockquote>
+<ol>
+<li><p>NSLog(@”任务2”);</p>
+</li>
+<li><p>dispatch_sync(dispatch_get_main_queue); // 同步操作阻塞子线程(global)</p>
+<blockquote>
+<p>NSLog(@”任务3”); // 执行完成同步操作完成</p>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务4”); // 执行完成异步操作执行完成</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务5”);</p>
+</li>
+</ol>
+<p>案例五：主线程死循环</p>
+<figure class="highlight objc"><table><tr><td class="code"><pre><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务1"</span>);</span><br><span class="line"><span class="built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="number">0</span>, <span class="number">0</span>), ^&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务2"</span>);</span><br><span class="line">    <span class="built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"任务3"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"任务4"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务5"</span>);</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>) &#123;&#125;</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"任务6"</span>);</span><br></pre></td></tr></table></figure>
+<p>控制台输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">任务1</span><br><span class="line">任务5</span><br><span class="line">任务2</span><br><span class="line">// `任务5` 和 `任务2` 顺序不一定</span><br></pre></td></tr></table></figure>
+<p>分析过程：</p>
+<ol>
+<li><p>NSLog(@”任务1”);</p>
+</li>
+<li><p>dispatch_async(dispatch_get_global_queue); // 异步操作不会阻塞主线程，主线程继续执行</p>
+<blockquote>
+<ol>
+<li><p>NSLog(任务2);</p>
+</li>
+<li><p>dispatch_sync(dispatch_get_main_queue); // 同步阻塞子线程，<code>任务3</code>执行完毕才算完成</p>
+<blockquote>
+<p>NSLog(@”任务3”); // 因为是在主线程，要等主线程<code>任务6</code>执行完毕才会执行<code>任务3</code></p>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务4”); // 等待上一条执行完毕，才会执行</p>
+</li>
+</ol>
+</blockquote>
+</li>
+<li><p>NSLog(@”任务5”);</p>
+</li>
+<li><p>while(1) {} // 主线程死循环，阻塞在这里</p>
+</li>
+<li><p>NSLog(@”任务6”);</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/多线程/" rel="tag"># 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/16/iOS查找算法/" rel="next" title="iOS查找算法">
+                <i class="fa fa-chevron-left"></i> iOS查找算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/zhl_avatar.jpg"
+                alt="mufan" />
+            
+              <p class="site-author-name" itemprop="name">mufan</p>
+              <p class="site-description motion-element" itemprop="description">这个世界上是没有捷径可言的<br>如果说有捷径，那也就是勤奋。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/htmlios" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程在iOS中的使用：GCD"><span class="nav-number">1.</span> <span class="nav-text">多线程在iOS中的使用：GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD优势"><span class="nav-number">1.2.</span> <span class="nav-text">GCD优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要使用GCD"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要使用GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的使用步骤"><span class="nav-number">1.4.</span> <span class="nav-text">GCD的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是队列"><span class="nav-number">1.5.</span> <span class="nav-text">什么是队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的队列可以分为2大类型："><span class="nav-number">1.6.</span> <span class="nav-text">GCD的队列可以分为2大类型：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.并发队列（Concurrent Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-串行队列（Serial-Dispatch-Queue）"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#队列和线程有什么区别？"><span class="nav-number">1.6.3.</span> <span class="nav-text">队列和线程有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列的创建："><span class="nav-number">1.7.</span> <span class="nav-text">队列的创建：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#串行队列的创建："><span class="nav-number">1.7.1.</span> <span class="nav-text">串行队列的创建：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发队列的创建："><span class="nav-number">1.7.2.</span> <span class="nav-text">并发队列的创建：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的几种重要的应用"><span class="nav-number">1.8.</span> <span class="nav-text">GCD的几种重要的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#子线程与主线程的通信"><span class="nav-number">1.8.1.</span> <span class="nav-text">子线程与主线程的通信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-once"><span class="nav-number">1.8.2.</span> <span class="nav-text">dispatch_once</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-group"><span class="nav-number">1.8.3.</span> <span class="nav-text">dispatch_group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-barrier"><span class="nav-number">1.8.4.</span> <span class="nav-text">dispatch_barrier</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程常见的一些问题："><span class="nav-number">2.</span> <span class="nav-text">多线程常见的一些问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD死锁问题："><span class="nav-number">2.1.</span> <span class="nav-text">GCD死锁问题：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">沐凡</span>
+
+  
+
+  
+</div>
+
+
+  
+
+
+
+  <div class="powered-by">程序 <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> </div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
