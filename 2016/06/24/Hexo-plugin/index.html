@@ -396,14 +396,14 @@
 <p>Hexo-admin可以比较好的解决这个问题，简单介绍一下：</p>
 <p>官网：<code>https://jaredforsyth.com/hexo-admin/</code></p>
 <p>安装hexo-admin插件（基于你已经搭建好<a href="https://htmlios.github.io/2016/06/25/Hexo-Github搭建博客/">Hexo</a>），并且启动hexo服务，打开浏览器访问能看到基本的界面</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="comment">--save hexo-admin</span></span><br><span class="line">hexo <span class="keyword">server</span> -d</span><br><span class="line"><span class="keyword">open</span> <span class="keyword">http</span>://localhost:<span class="number">4000</span>/<span class="keyword">admin</span>/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install --save hexo-admin</span><br><span class="line">hexo server -d</span><br><span class="line">open http://localhost:4000/admin/</span><br></pre></td></tr></table></figure>
 <p>在hexo的_config.yml配置hexo-admin</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># hexo-admin authentification</span></span><br><span class="line"></span><br><span class="line"><span class="attr">admin:</span></span><br><span class="line"><span class="attr">  username:</span> <span class="string">xxx</span> <span class="comment"># 账号</span></span><br><span class="line"><span class="attr">  password_hash:</span> <span class="string">xxx</span> <span class="comment"># 密码</span></span><br><span class="line"><span class="attr">  secret:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">  deployCommand:</span> <span class="string">'./hexo-deploy.sh'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># hexo-admin authentification</span><br><span class="line"></span><br><span class="line">admin:</span><br><span class="line">  username: xxx # 账号</span><br><span class="line">  password_hash: xxx # 密码</span><br><span class="line">  secret: xxx</span><br><span class="line">  deployCommand: &apos;./hexo-deploy.sh&apos;</span><br></pre></td></tr></table></figure>
 <p>密码生成方式，在<code>http://localhost:4000/admin/</code>-&gt;<code>Settings</code>-&gt;<code>Setup authentification here.</code>按照界面指示输入<code>Username</code>、<code>Password</code>、<code>Secret</code>后，在底部会看到生成的相应配置，将其拷贝到Hexo目录下的_config.yml里，重启hexo，访问<code>http://localhost:4000/admin/</code>输入你生成好的账号密码。</p>
 <p>deployCommand需要配置，在Hexo目录下新建<code>hexo-deploy.sh</code>输入以下内容</p>
-<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">hexo deploy</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 <p>保存退出，并且赋予执行权限</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">chmod</span> +<span class="selector-tag">x</span> <span class="selector-tag">hexo-deploy</span><span class="selector-class">.sh</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">chmod +x hexo-deploy.sh</span><br></pre></td></tr></table></figure>
 <p>完成，后续写完博客只需要点击Deploy即可生成发布</p>
 <p><img src="/2016/06/24/Hexo-plugin/image-20180624184646419.png" alt="image-20180624184646419"></p>
 <ul>
@@ -415,20 +415,20 @@
 </ul>
 <h2 id="Hexo插入图片"><a href="#Hexo插入图片" class="headerlink" title="Hexo插入图片"></a>Hexo插入图片</h2><p>1.修改配置：修改hexo配置文件_config.yml，post_asset_folder: true；</p>
 <p>2.安装插件：终端切换到在hexo目录，安装hexo-asset-image插件，命令及成功如下；成功后新生成md博文时，/source/_posts文件夹内会同时生成xxxx.md、xxxx文件夹；</p>
-<figure class="highlight maxima"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-<span class="built_in">image</span> --<span class="built_in">save</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 <p><img src="/2016/06/24/Hexo-plugin/image-20180622142939294.jpg" alt="安装hexo-asset-image plugin"></p>
 <p>3.使用方式：在xxxx.md中想引入图片时，将图片存在xxxx文件夹内，后只需在xxxx.md中按照markdown的格式引入图片；</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">图片hover提示</span>](<span class="link">xxxx/图片名.图片格式</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![图片hover提示](xxxx/图片名.图片格式)</span><br></pre></td></tr></table></figure>
 <p>4.检验结果：hexo g生成页面后，进入public/年/月/日/xxxx/index.html找到生成的相关字段，html标签内的语句应如下；</p>
-<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;img <span class="attribute">src</span>=<span class="string">"年/月/日/xxxx/图片名.图片格式"</span>&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;img src=&quot;年/月/日/xxxx/图片名.图片格式&quot;&gt;</span><br></pre></td></tr></table></figure>
 <p>慈不带兵，义不行贾。</p>
 <h2 id="Hexo-next博客图片浏览器"><a href="#Hexo-next博客图片浏览器" class="headerlink" title="Hexo-next博客图片浏览器"></a>Hexo-next博客图片浏览器</h2><p>修改<code>next的</code> <code>_config.yml</code>配置里的<code>fancybox: true</code>，配置上方的注释有插件安装地址（包含安装教程）。</p>
 <h2 id="Hexo博客安装RSS插件"><a href="#Hexo博客安装RSS插件" class="headerlink" title="Hexo博客安装RSS插件"></a>Hexo博客安装RSS插件</h2><p>安装插件，在本地hexo目录，输入如下命令：</p>
-<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">npm <span class="keyword">install</span> hexo-generator-feed</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-feed</span><br></pre></td></tr></table></figure>
 <p>添加配置。在本地hexo根目录下的_config.yml文件中，添加以下配置：</p>
-<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="meta"># Extensions</span></span><br><span class="line"><span class="meta">## Plugins: http:<span class="comment">//hexo.io/plugins/</span></span></span><br><span class="line"><span class="meta">#RSS订阅</span></span><br><span class="line"><span class="symbol">plugin:</span></span><br><span class="line">- hexo-generator-feed</span><br><span class="line"><span class="meta">#Feed Atom</span></span><br><span class="line"><span class="symbol">feed:</span></span><br><span class="line"><span class="symbol">type:</span> atom</span><br><span class="line"><span class="symbol">path:</span> atom.xml</span><br><span class="line"><span class="symbol">limit:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Extensions</span><br><span class="line">## Plugins: http://hexo.io/plugins/</span><br><span class="line">#RSS订阅</span><br><span class="line">plugin:</span><br><span class="line">- hexo-generator-feed</span><br><span class="line">#Feed Atom</span><br><span class="line">feed:</span><br><span class="line">type: atom</span><br><span class="line">path: atom.xml</span><br><span class="line">limit: 20</span><br></pre></td></tr></table></figure>
 <p>添加主题配置，在主题目录下的_config.yml目录下，添加如下配置：</p>
-<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">rss:</span> /atom.xml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">rss: /atom.xml</span><br></pre></td></tr></table></figure>
 <p>更新中。。。</p>
 
       

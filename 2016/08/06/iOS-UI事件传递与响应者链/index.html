@@ -413,7 +413,7 @@
 <p>当你点击了屏幕会产生一个触摸事件，消息循环(runloop)会接收到触摸事件放到消息队列里，UIApplication会从消息队列里取事件分发下去，首先传给UIWindow，UIWindow会使用hitTest:withEvent:方法找到此次触摸事件初始点所在的视图，找到这个视图之后他就会调用视图的touchesBegan:withEvent:方法来处理事件。</p>
 <h4 id="hitTest-withEvent-查找过程"><a href="#hitTest-withEvent-查找过程" class="headerlink" title="hitTest:withEvent:查找过程"></a>hitTest:withEvent:查找过程</h4><p><img src="/2016/08/06/iOS-UI事件传递与响应者链/iOS3.png" alt="img"></p>
 <p>图片中view的层次：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[ViewA addSubview:ViewB]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewA addSubview:ViewC]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewB addSubview:ViewD]</span><span class="comment">;</span></span><br><span class="line"><span class="section">[ViewB addSubview:ViewE]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ViewA addSubview:ViewB];</span><br><span class="line">[ViewA addSubview:ViewC];</span><br><span class="line">[ViewB addSubview:ViewD];</span><br><span class="line">[ViewB addSubview:ViewE];</span><br></pre></td></tr></table></figure>
 <p>点击ViewE：</p>
 <ol>
 <li>A是UIWindow的根视图，首先对A进行hitTest:withEvent:。</li>
