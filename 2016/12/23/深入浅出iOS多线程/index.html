@@ -112,23 +112,23 @@
 
 
 
-  <meta name="description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+  <meta name="description" content="队列和任务队列分为串行队列和并行队列 任务的执行分为同步和异步 以上两两组合就成为了：1、串行队列同步执行;2、串行队列异步执行;3、并行队列同步执行;4、并行队列异步执行。 异步是多线程的代名词，异步在实际应用中会开启新的线程，执行耗时操作。 一个很重要的事情： 队列只负责任务的调度，而不负责任务的执行； 任务是在线程中执行的； 队列和任务的特点队列特点：先进先出，排在前面的任务最先执行； 串行">
 <meta name="keywords" content="iOS,多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出iOS多线程">
 <meta property="og:url" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/index.html">
 <meta property="og:site_name" content="沐凡的博客">
-<meta property="og:description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+<meta property="og:description" content="队列和任务队列分为串行队列和并行队列 任务的执行分为同步和异步 以上两两组合就成为了：1、串行队列同步执行;2、串行队列异步执行;3、并行队列同步执行;4、并行队列异步执行。 异步是多线程的代名词，异步在实际应用中会开启新的线程，执行耗时操作。 一个很重要的事情： 队列只负责任务的调度，而不负责任务的执行； 任务是在线程中执行的； 队列和任务的特点队列特点：先进先出，排在前面的任务最先执行； 串行">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/1.png">
 <meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/2.png">
 <meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/3.png">
 <meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/4.png">
 <meta property="og:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/5.png">
-<meta property="og:updated_time" content="2018-07-25T10:09:00.287Z">
+<meta property="og:updated_time" content="2018-07-26T08:55:22.981Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出iOS多线程">
-<meta name="twitter:description" content="多线程在iOS中的使用：GCD概念GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。 GCD优势GCD会自动利用更多的CPU模块（比如双核、四核）。 GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。 程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。 为什么要使用GCD为了提高软件性能，应该异">
+<meta name="twitter:description" content="队列和任务队列分为串行队列和并行队列 任务的执行分为同步和异步 以上两两组合就成为了：1、串行队列同步执行;2、串行队列异步执行;3、并行队列同步执行;4、并行队列异步执行。 异步是多线程的代名词，异步在实际应用中会开启新的线程，执行耗时操作。 一个很重要的事情： 队列只负责任务的调度，而不负责任务的执行； 任务是在线程中执行的； 队列和任务的特点队列特点：先进先出，排在前面的任务最先执行； 串行">
 <meta name="twitter:image" content="http://htmlios.github.io/2016/12/23/深入浅出iOS多线程/1.png">
 
 
@@ -395,7 +395,48 @@
       
 
       
-        <h3 id="多线程在iOS中的使用：GCD"><a href="#多线程在iOS中的使用：GCD" class="headerlink" title="多线程在iOS中的使用：GCD"></a>多线程在iOS中的使用：GCD</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。</p>
+        <h3 id="队列和任务"><a href="#队列和任务" class="headerlink" title="队列和任务"></a>队列和任务</h3><p>队列分为串行队列和并行队列</p>
+<p>任务的执行分为同步和异步</p>
+<p>以上两两组合就成为了：1、串行队列同步执行;2、串行队列异步执行;3、并行队列同步执行;4、并行队列异步执行。</p>
+<p>异步是多线程的代名词，异步在实际应用中会开启新的线程，执行耗时操作。</p>
+<p>一个很重要的事情：</p>
+<p>队列只负责任务的调度，而不负责任务的执行；</p>
+<p>任务是在线程中执行的；</p>
+<h4 id="队列和任务的特点"><a href="#队列和任务的特点" class="headerlink" title="队列和任务的特点"></a>队列和任务的特点</h4><p>队列特点：先进先出，排在前面的任务最先执行；</p>
+<p>串行队列：任务按照顺序被调度，前一个任务不执行完毕，队列不会调度；</p>
+<p>并行队列：只要有空闲的线程，队列就会调度当前任务，交给线程去执行，不需要考虑前面是否有任务在执行，只要有线程可以利用，队列就会调度任务。</p>
+<p>主队列：专门用来在主线程调度任务的队列，所以主队列的任务都在主线程来执行，主队列会随着程序的启动一起创建，我们只需要get即可。</p>
+<p>全局队列：是系统为了方便程序员开发提供的，其工作表现与并发队列一致。</p>
+<p>全局队列跟并发队列的区别是什么？</p>
+<ol>
+<li>全局队列：无论在ARC还是MRC都不需要考虑释放，因为系统提供的我们只需要get就可以。</li>
+<li>并发队列：在MRC下，并发队列创建出来后，需要手动释放dispatch_release();</li>
+</ol>
+<p>同步执行：不会开启新的线程，任务按顺序执行；</p>
+<p>异步执行：会开启新的线程，任务可以并发的执行；</p>
+<h4 id="多线程的几种组合特点"><a href="#多线程的几种组合特点" class="headerlink" title="多线程的几种组合特点"></a>多线程的几种组合特点</h4><ol>
+<li><p>串行队列同步执行</p>
+<blockquote>
+<p>综合串行队列的特点：按顺序执行；同步：不会开启新的线程；则串行队列同步执行只是按部就班one by one就行。</p>
+</blockquote>
+</li>
+<li><p>串行队列异步执行</p>
+<blockquote>
+<p>虽然队列中存放的是异步执行的任务，但是结合串行队列的特点，前一个任务不执行完毕，队列不会调度，所以串行队列异步执行也还是one by one执行。</p>
+</blockquote>
+</li>
+<li><p>并行队列同步执行</p>
+<blockquote>
+<p>综合并行队列的特点，和同步执行的特点，可以明确分析出来，虽然并行队列可以不需要等待前一个执行完毕就可以调度下一个任务，但是任务同步执行不会开启新的线程，所以任务还是one by one的执行。</p>
+</blockquote>
+</li>
+<li><p>并行队列异步执行</p>
+<blockquote>
+<p>并行队列不需要等待前一个执行完毕就可以调度下一个任务，异步执行任务时可以开启新的线程，所以这种组合可以实现任务并发，在实际开发中也经常用到。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="多线程在iOS中的使用：GCD"><a href="#多线程在iOS中的使用：GCD" class="headerlink" title="多线程在iOS中的使用：GCD"></a>多线程在iOS中的使用：GCD</h3><h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>GCD，全称Grand Central Dispatch ，是iOS用来管理线程的技术。纯C语言，提供了非常多强大的函数。</p>
 <h4 id="GCD优势"><a href="#GCD优势" class="headerlink" title="GCD优势"></a>GCD优势</h4><p>GCD会自动利用更多的CPU模块（比如双核、四核）。</p>
 <p>GCD会自动管理线程的生命周期（创建线程、调度任务、销毁线程）。</p>
 <p>程序员只需要告诉GCD想要执行什么任务，不需要编写任何线程管理代码。</p>
@@ -804,7 +845,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程在iOS中的使用：GCD"><span class="nav-number">1.</span> <span class="nav-text">多线程在iOS中的使用：GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD优势"><span class="nav-number">1.2.</span> <span class="nav-text">GCD优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要使用GCD"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要使用GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的使用步骤"><span class="nav-number">1.4.</span> <span class="nav-text">GCD的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是队列"><span class="nav-number">1.5.</span> <span class="nav-text">什么是队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的队列可以分为2大类型："><span class="nav-number">1.6.</span> <span class="nav-text">GCD的队列可以分为2大类型：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.并发队列（Concurrent Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-串行队列（Serial-Dispatch-Queue）"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#队列和线程有什么区别？"><span class="nav-number">1.6.3.</span> <span class="nav-text">队列和线程有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列的创建："><span class="nav-number">1.7.</span> <span class="nav-text">队列的创建：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#串行队列的创建："><span class="nav-number">1.7.1.</span> <span class="nav-text">串行队列的创建：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发队列的创建："><span class="nav-number">1.7.2.</span> <span class="nav-text">并发队列的创建：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的几种重要的应用"><span class="nav-number">1.8.</span> <span class="nav-text">GCD的几种重要的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#子线程与主线程的通信"><span class="nav-number">1.8.1.</span> <span class="nav-text">子线程与主线程的通信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-once"><span class="nav-number">1.8.2.</span> <span class="nav-text">dispatch_once</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-group"><span class="nav-number">1.8.3.</span> <span class="nav-text">dispatch_group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-barrier"><span class="nav-number">1.8.4.</span> <span class="nav-text">dispatch_barrier</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程常见的一些问题："><span class="nav-number">2.</span> <span class="nav-text">多线程常见的一些问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD死锁问题："><span class="nav-number">2.1.</span> <span class="nav-text">GCD死锁问题：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#队列和任务"><span class="nav-number">1.</span> <span class="nav-text">队列和任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#队列和任务的特点"><span class="nav-number">1.1.</span> <span class="nav-text">队列和任务的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程的几种组合特点"><span class="nav-number">1.2.</span> <span class="nav-text">多线程的几种组合特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程在iOS中的使用：GCD"><span class="nav-number">2.</span> <span class="nav-text">多线程在iOS中的使用：GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD优势"><span class="nav-number">2.2.</span> <span class="nav-text">GCD优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要使用GCD"><span class="nav-number">2.3.</span> <span class="nav-text">为什么要使用GCD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的使用步骤"><span class="nav-number">2.4.</span> <span class="nav-text">GCD的使用步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是队列"><span class="nav-number">2.5.</span> <span class="nav-text">什么是队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的队列可以分为2大类型："><span class="nav-number">2.6.</span> <span class="nav-text">GCD的队列可以分为2大类型：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-并发队列（Concurrent-Dispatch-Queue）"><span class="nav-number">2.6.1.</span> <span class="nav-text">1.并发队列（Concurrent Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-串行队列（Serial-Dispatch-Queue）"><span class="nav-number">2.6.2.</span> <span class="nav-text">2.串行队列（Serial Dispatch Queue）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#队列和线程有什么区别？"><span class="nav-number">2.6.3.</span> <span class="nav-text">队列和线程有什么区别？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列的创建："><span class="nav-number">2.7.</span> <span class="nav-text">队列的创建：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#串行队列的创建："><span class="nav-number">2.7.1.</span> <span class="nav-text">串行队列的创建：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#并发队列的创建："><span class="nav-number">2.7.2.</span> <span class="nav-text">并发队列的创建：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD的几种重要的应用"><span class="nav-number">2.8.</span> <span class="nav-text">GCD的几种重要的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#子线程与主线程的通信"><span class="nav-number">2.8.1.</span> <span class="nav-text">子线程与主线程的通信</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-once"><span class="nav-number">2.8.2.</span> <span class="nav-text">dispatch_once</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-group"><span class="nav-number">2.8.3.</span> <span class="nav-text">dispatch_group</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dispatch-barrier"><span class="nav-number">2.8.4.</span> <span class="nav-text">dispatch_barrier</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程常见的一些问题："><span class="nav-number">3.</span> <span class="nav-text">多线程常见的一些问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GCD死锁问题："><span class="nav-number">3.1.</span> <span class="nav-text">GCD死锁问题：</span></a></li></ol></li></ol></div>
             
 
           </div>
