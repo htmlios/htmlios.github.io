@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://htmlios.github.io/"/>
-  <updated>2018-10-29T06:18:32.050Z</updated>
+  <updated>2018-11-14T09:04:02.446Z</updated>
   <id>http://htmlios.github.io/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>网络</title>
+    <link href="http://htmlios.github.io/2017/05/13/%E7%BD%91%E7%BB%9C/"/>
+    <id>http://htmlios.github.io/2017/05/13/网络/</id>
+    <published>2017-05-13T09:44:00.000Z</published>
+    <updated>2018-11-14T09:04:02.446Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h4><p>超文本传输协议HTTP协议被广泛用于Web浏览器和服务器之间传递信息，HTTP协议以明文方式发送内容，不提供任何方式的数据加密，如果攻击者截取了Web浏览器和服务器之间的传输报文，就可以直接读取其中的信息，因此，HTTP协议不适合传输一些敏感信息，比如：信用卡号、密码等支付信息。</p><p>为了解决HTTP协议这一缺陷，需要使用另一种协议：安全套接字层超文本传输协议HTTPS，为了数据传输的安全，HTTPS在HTTP的基础上加入了SSL协议，<code>SSL依靠证书来验证服务器的身份，并未浏览器和服务器之间的通信加密</code>。</p><h5 id="HTTP和HTTPS基本概念"><a href="#HTTP和HTTPS基本概念" class="headerlink" title="HTTP和HTTPS基本概念"></a>HTTP和HTTPS基本概念</h5><p>HTTP：是互联网上应用最广泛的一种网络协议，是一个客户端与服务器请求和应答的标准（TCP），用于从WWW服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。</p><p>HTTPS：是以安全为目标的HTTP通道，简单讲是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p><p>HTTPS协议的主要作用可以分为两种：一种是建立一个信息安全通道，来保证数据传输的安全；另一种是确认网站的真实性。</p><h5 id="HTTPS的工作原理"><a href="#HTTPS的工作原理" class="headerlink" title="HTTPS的工作原理"></a>HTTPS的工作原理</h5><p>我们都知道HTTPS能都加密信息，以免信息被第三方获取，所以很多银行网站或电子邮箱等等安全级别较高的服务都会采用HTTPS协议。</p><p><img src="/2017/05/13/网络/1.jpg" alt="HTTP与HTTPS的区别"></p><p>客户端在使用HTTPS方式与Web服务器通信时有以下几个步骤，如图所示。</p><ol><li>客户使用https的URL访问Web服务器，要求与Web服务器建立SSL连接。</li><li>Web服务器收到客户端请求后，会将网站的证书信息（证书中包含公钥）传一份给客户端。</li><li>客户端的浏览器与Web服务器开始协商SSL连接的安全等级，也就是信息加密的等级。</li><li>客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</li><li>Web服务器利用自己的私钥解密出会话密钥。</li><li>Web服务器利用会话密钥加密与客户端之间的通信。</li></ol><p><img src="/2017/05/13/网络/2.gif" alt="img"></p><h5 id="HTTPS的缺点"><a href="#HTTPS的缺点" class="headerlink" title="HTTPS的缺点"></a>HTTPS的缺点</h5><p>虽然说HTTPS有很大的优势，但其相对来说，还有不足之处：</p><ol><li>HTTPS协议握手阶段比较费时，会使页面的加载时间延长近50%，增加10%到20%的耗电。</li><li>HTTPS链接缓存不如HTTP高效，会增加数据开销和功耗，甚至已有的安全措施也会受影响。</li><li>SSL证书需要钱，功能越强大的证书费用越高，个人网站，小网站一般没有必要用。</li><li>SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPV4资源不可能支撑这个消耗。</li><li>HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务器攻击、服务器劫持等方面几乎起不到作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;HTTP和HTTPS的区别&quot;&gt;&lt;a href=&quot;#HTTP和HTTPS的区别&quot; class=&quot;headerlink&quot; title=&quot;HTTP和HTTPS的区别&quot;&gt;&lt;/a&gt;HTTP和HTTPS的区别&lt;/h4&gt;&lt;p&gt;超文本传输协议HTTP协议被广泛用于Web浏览器和服
+      
+    
+    </summary>
+    
+      <category term="工作" scheme="http://htmlios.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+    
+    
+      <category term="网络" scheme="http://htmlios.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>iOS知识点二</title>
     <link href="http://htmlios.github.io/2017/03/11/iOS%E7%9F%A5%E8%AF%86%E7%82%B9%E4%BA%8C/"/>
     <id>http://htmlios.github.io/2017/03/11/iOS知识点二/</id>
     <published>2017-03-11T09:07:00.000Z</published>
-    <updated>2018-10-29T06:18:32.050Z</updated>
+    <updated>2018-11-13T07:31:00.924Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Charles抓包及相关问题解决"><a href="#Charles抓包及相关问题解决" class="headerlink" title="Charles抓包及相关问题解决"></a>Charles抓包及相关问题解决</h3><p><img src="/2017/03/11/iOS知识点二/2.png" alt="image-20181026171253247"></p><p><img src="/2017/03/11/iOS知识点二/3.png" alt="image-20181026171410034"></p><p><img src="/2017/03/11/iOS知识点二/1.png" alt="image-20181026171023720"></p><p><img src="/2017/03/11/iOS知识点二/4.png" alt="image-20181026171456315"></p><p><img src="/2017/03/11/iOS知识点二/5.png" alt="image-20181026171520295"></p><p><img src="/2017/03/11/iOS知识点二/6.png" alt="image-20181029140149600"></p><blockquote><p>安装4个证书，其中手机上的需要手机访问 <code>chls.pro/ssl</code> 来安装手机上的证书，并信任（包括电脑的根证书，也要信任）。手机和电脑在同一wifi下，设置代理与提示中的一致<code>172.16.1.23</code> 端口 <code>50320</code> ，其他模式如截图，电脑抓包，选择 <code>macOS Proxy</code></p></blockquote>]]></content>
     
